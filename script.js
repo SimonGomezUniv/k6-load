@@ -8,12 +8,12 @@ export const options = {
 
 export default function() {
   group('homepage tests', () => {
-    let res = http.get('http://localhost:8080', {
+    let res = http.get('https://localhost:8080', {
       tags: {
-        name: 'bnpparibas-test',
-        endpoint: 'homepage',
+        name: 'test-local',
+        endpoint: 'local',
         method: 'get',
-        env: 'production',
+        env: 'local',
         team: 'platform',
         version: 'v1.0',
         expected_response: 'true'
