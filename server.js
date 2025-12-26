@@ -12,6 +12,8 @@ const server = http.createServer((req, res) => {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not Found');
     } else {
+         res.writeHead(501, { 'Content-Type': 'text/plain' });
+        res.end('KO');
         // 5% des cas : Pas de réponse (timeout simulé)
         // On ne fait rien ici pour simuler l'absence de réponse
     }

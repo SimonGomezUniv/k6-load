@@ -2,13 +2,13 @@ import http from 'k6/http';
 import { sleep, check, group } from 'k6';
 
 export const options = {
-  vus: 10,
+  vus: 2000,
   duration: '300s'
 };
 
 export default function() {
   group('homepage tests', () => {
-    let res = http.get('https://localhost:8080', {
+    let res = http.get('http://localhost:8080', {
       tags: {
         name: 'test-local',
         endpoint: 'local',
