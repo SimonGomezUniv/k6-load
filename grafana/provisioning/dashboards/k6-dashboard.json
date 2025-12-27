@@ -1,1340 +1,1202 @@
 {
-    "annotations":  {
-                        "list":  [
-                                     {
-                                         "builtIn":  1,
-                                         "datasource":  {
-                                                            "uid":  "-- Grafana --"
-                                                        },
-                                         "enable":  true,
-                                         "hide":  true,
-                                         "iconColor":  "rgba(0, 211, 255, 1)",
-                                         "name":  "Annotations \u0026 Alerts",
-                                         "type":  "dashboard"
-                                     }
-                                 ]
-                    },
-    "editable":  true,
-    "fiscalYearStartMonth":  0,
-    "graphTooltip":  0,
-    "id":  3,
-    "links":  [
-
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "1s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Total Requests",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [],
+          "interval": "1s",
+          "measurement": "http_reqs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM http_reqs WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All')",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Total Requests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 2,
+      "interval": "1s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Failed Requests",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [],
+          "interval": "1s",
+          "measurement": "http_req_failed",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM http_req_failed WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All')",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Failed Requests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 0
+      },
+      "id": 3,
+      "interval": "1s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Avg Response Time",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All')",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Avg Response Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 11,
+        "y": 0
+      },
+      "id": 4,
+      "interval": "1s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "P95 Response Time",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT percentile(value, 95) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All')",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "P95 Response Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Requests/sec",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 5,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Requests/sec",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
               ],
-    "panels":  [
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "thresholds"
-                                                                      },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "min":  0,
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "short"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  4,
-                                       "w":  4,
-                                       "x":  0,
-                                       "y":  0
-                                   },
-                       "id":  1,
-                       "options":  {
-                                       "colorMode":  "value",
-                                       "graphMode":  "none",
-                                       "justifyMode":  "center",
-                                       "orientation":  "auto",
-                                       "percentChangeColorMode":  "standard",
-                                       "reduceOptions":  {
-                                                             "calcs":  [
-                                                                           "lastNotNull"
-                                                                       ],
-                                                             "fields":  "",
-                                                             "values":  false
-                                                         },
-                                       "showPercentChange":  false,
-                                       "text":  {
-
-                                                },
-                                       "textMode":  "auto",
-                                       "wideLayout":  true
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Total Requests",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_reqs",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM http_reqs WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Total Requests",
-                       "type":  "stat",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "thresholds"
-                                                                      },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "min":  0,
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "red",
-                                                                                                 "value":  0
-                                                                                             },
-                                                                                             {
-                                                                                                 "color":  "red",
-                                                                                                 "value":  1
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "short"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  4,
-                                       "w":  4,
-                                       "x":  4,
-                                       "y":  0
-                                   },
-                       "id":  2,
-                       "options":  {
-                                       "colorMode":  "value",
-                                       "graphMode":  "none",
-                                       "justifyMode":  "center",
-                                       "orientation":  "auto",
-                                       "percentChangeColorMode":  "standard",
-                                       "reduceOptions":  {
-                                                             "calcs":  [
-                                                                           "lastNotNull"
-                                                                       ],
-                                                             "fields":  "",
-                                                             "values":  false
-                                                         },
-                                       "showPercentChange":  false,
-                                       "text":  {
-
-                                                },
-                                       "textMode":  "auto",
-                                       "wideLayout":  true
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Failed Requests",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_failed",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM http_req_failed WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Failed Requests",
-                       "type":  "stat",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "thresholds"
-                                                                      },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "min":  0,
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "ms"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  4,
-                                       "w":  3,
-                                       "x":  8,
-                                       "y":  0
-                                   },
-                       "id":  3,
-                       "options":  {
-                                       "colorMode":  "value",
-                                       "graphMode":  "none",
-                                       "justifyMode":  "center",
-                                       "orientation":  "auto",
-                                       "percentChangeColorMode":  "standard",
-                                       "reduceOptions":  {
-                                                             "calcs":  [
-                                                                           "lastNotNull"
-                                                                       ],
-                                                             "fields":  "",
-                                                             "values":  false
-                                                         },
-                                       "showPercentChange":  false,
-                                       "text":  {
-
-                                                },
-                                       "textMode":  "auto",
-                                       "wideLayout":  true
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Avg Response Time",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Avg Response Time",
-                       "type":  "stat",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "thresholds"
-                                                                      },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "min":  0,
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "orange",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "ms"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  4,
-                                       "w":  3,
-                                       "x":  11,
-                                       "y":  0
-                                   },
-                       "id":  4,
-                       "options":  {
-                                       "colorMode":  "value",
-                                       "graphMode":  "none",
-                                       "justifyMode":  "center",
-                                       "orientation":  "auto",
-                                       "percentChangeColorMode":  "standard",
-                                       "reduceOptions":  {
-                                                             "calcs":  [
-                                                                           "lastNotNull"
-                                                                       ],
-                                                             "fields":  "",
-                                                             "values":  false
-                                                         },
-                                       "showPercentChange":  false,
-                                       "text":  {
-
-                                                },
-                                       "textMode":  "auto",
-                                       "wideLayout":  true
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "P95 Response Time",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT percentile(value, 95) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "P95 Response Time",
-                       "type":  "stat",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Requests/sec",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "reqps"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  12,
-                                       "x":  0,
-                                       "y":  4
-                                   },
-                       "id":  5,
-                       "interval":  "1s",
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "single",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Requests/sec",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_reqs",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM http_reqs WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Requests Over Time",
-                       "type":  "timeseries"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Response Time (ms)",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "ms"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  12,
-                                       "x":  12,
-                                       "y":  4
-                                   },
-                       "id":  6,
-                       "interval":  "1s",
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "single",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Avg Response",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Response Time Over Time",
-                       "type":  "timeseries"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Response Time (ms)",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "ms"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  24,
-                                       "x":  0,
-                                       "y":  12
-                                   },
-                       "id":  7,
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "multi",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Avg",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       },
-                                       {
-                                           "alias":  "P90",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT percentile(value, 90) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "B",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       },
-                                       {
-                                           "alias":  "P95",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT percentile(value, 95) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "C",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       },
-                                       {
-                                           "alias":  "P99",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "http_req_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT percentile(value, 99) FROM http_req_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "D",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Response Time Percentiles (Mean, P90, P95, P99)",
-                       "type":  "timeseries",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Data (bytes/s)",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "Bps"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  24,
-                                       "x":  0,
-                                       "y":  20
-                                   },
-                       "id":  8,
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "multi",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Data Sent",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "data_sent",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM data_sent WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       },
-                                       {
-                                           "alias":  "Data Received",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "data_received",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM data_received WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "B",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Data Sent \u0026 Received Over Time",
-                       "type":  "timeseries",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Iterations/sec",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "ops"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  12,
-                                       "x":  0,
-                                       "y":  28
-                                   },
-                       "id":  9,
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "single",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Iterations",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "iterations",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT sum(value) FROM iterations WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Iterations Over Time",
-                       "type":  "timeseries",
-                       "interval":  "1s"
-                   },
-                   {
-                       "datasource":  {
-                                          "type":  "influxdb",
-                                          "uid":  "P951FEA4DE68E13C5"
-                                      },
-                       "fieldConfig":  {
-                                           "defaults":  {
-                                                            "color":  {
-                                                                          "mode":  "palette-classic"
-                                                                      },
-                                                            "custom":  {
-                                                                           "axisBorderShow":  false,
-                                                                           "axisCenteredZero":  false,
-                                                                           "axisColorMode":  "text",
-                                                                           "axisLabel":  "Duration (s)",
-                                                                           "axisPlacement":  "auto",
-                                                                           "barAlignment":  0,
-                                                                           "barWidthFactor":  0.6,
-                                                                           "drawStyle":  "line",
-                                                                           "fillOpacity":  10,
-                                                                           "gradientMode":  "opacity",
-                                                                           "hideFrom":  {
-                                                                                            "legend":  false,
-                                                                                            "tooltip":  false,
-                                                                                            "viz":  false
-                                                                                        },
-                                                                           "insertNulls":  false,
-                                                                           "lineInterpolation":  "linear",
-                                                                           "lineWidth":  2,
-                                                                           "pointSize":  5,
-                                                                           "scaleDistribution":  {
-                                                                                                     "type":  "linear"
-                                                                                                 },
-                                                                           "showPoints":  "auto",
-                                                                           "showValues":  false,
-                                                                           "spanNulls":  false,
-                                                                           "stacking":  {
-                                                                                            "group":  "A",
-                                                                                            "mode":  "none"
-                                                                                        },
-                                                                           "thresholdsStyle":  {
-                                                                                                   "mode":  "off"
-                                                                                               }
-                                                                       },
-                                                            "mappings":  [
-
-                                                                         ],
-                                                            "thresholds":  {
-                                                                               "mode":  "absolute",
-                                                                               "steps":  [
-                                                                                             {
-                                                                                                 "color":  "green",
-                                                                                                 "value":  0
-                                                                                             }
-                                                                                         ]
-                                                                           },
-                                                            "unit":  "s"
-                                                        },
-                                           "overrides":  [
-
-                                                         ]
-                                       },
-                       "gridPos":  {
-                                       "h":  8,
-                                       "w":  12,
-                                       "x":  12,
-                                       "y":  28
-                                   },
-                       "id":  10,
-                       "options":  {
-                                       "legend":  {
-                                                      "calcs":  [
-
-                                                                ],
-                                                      "displayMode":  "list",
-                                                      "placement":  "bottom",
-                                                      "showLegend":  true
-                                                  },
-                                       "tooltip":  {
-                                                       "hideZeros":  false,
-                                                       "mode":  "single",
-                                                       "sort":  "none"
-                                                   }
-                                   },
-                       "pluginVersion":  "12.3.1",
-                       "targets":  [
-                                       {
-                                           "alias":  "Avg Duration",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "iteration_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT mean(value) FROM iteration_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "A",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       },
-                                       {
-                                           "alias":  "Max Duration",
-                                           "datasource":  {
-                                                              "type":  "influxdb",
-                                                              "uid":  "P951FEA4DE68E13C5"
-                                                          },
-                                           "dsType":  "influxdb",
-                                           "groupBy":  [
-                                                           {
-                                                               "params":  [
-                                                                              "$__interval"
-                                                                          ],
-                                                               "type":  "time"
-                                                           }
-                                                       ],
-                                           "interval":  "1s",
-                                           "measurement":  "iteration_duration",
-                                           "orderByTime":  "ASC",
-                                           "policy":  "default",
-                                           "query":  "SELECT max(value) FROM iteration_duration WHERE $timeFilter AND (\"name\" = \u0027$testname\u0027 OR \u0027$testname\u0027 = \u0027All\u0027) AND (\"endpoint\" = \u0027$endpoint\u0027 OR \u0027$endpoint\u0027 = \u0027All\u0027) AND (\"env\" = \u0027$env\u0027 OR \u0027$env\u0027 = \u0027All\u0027) GROUP BY time($__interval)",
-                                           "rawQuery":  true,
-                                           "refId":  "B",
-                                           "resultFormat":  "time_series",
-                                           "select":  [
-
-                                                      ],
-                                           "tags":  [
-
-                                                    ]
-                                       }
-                                   ],
-                       "title":  "Iteration Duration (Mean \u0026 Max)",
-                       "type":  "timeseries",
-                       "interval":  "1s"
-                   }
-               ],
-    "preload":  false,
-    "refresh":  "5s",
-    "schemaVersion":  42,
-    "tags":  [
-                 "k6",
-                 "performance"
-             ],
-    "templating":  {
-                       "list":  [
-                                    {
-                                        "allValue":  "All",
-                                        "current":  {
-                                                        "text":  "All",
-                                                        "value":  "All"
-                                                    },
-                                        "datasource":  "InfluxDB",
-                                        "definition":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"name\"",
-                                        "description":  "Filter by test name",
-                                        "includeAll":  true,
-                                        "label":  "Test Name",
-                                        "name":  "testname",
-                                        "options":  [
-
-                                                    ],
-                                        "query":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"name\"",
-                                        "refresh":  1,
-                                        "regex":  "",
-                                        "type":  "query"
-                                    },
-                                    {
-                                        "allValue":  "All",
-                                        "current":  {
-                                                        "text":  "All",
-                                                        "value":  "All"
-                                                    },
-                                        "datasource":  "InfluxDB",
-                                        "definition":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"endpoint\"",
-                                        "description":  "Filter by endpoint",
-                                        "includeAll":  true,
-                                        "label":  "Endpoint",
-                                        "name":  "endpoint",
-                                        "options":  [
-
-                                                    ],
-                                        "query":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"endpoint\"",
-                                        "refresh":  1,
-                                        "regex":  "",
-                                        "type":  "query"
-                                    },
-                                    {
-                                        "allValue":  "All",
-                                        "current":  {
-                                                        "text":  "All",
-                                                        "value":  "All"
-                                                    },
-                                        "datasource":  "InfluxDB",
-                                        "definition":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"env\"",
-                                        "description":  "Filter by environment",
-                                        "includeAll":  true,
-                                        "label":  "Environment",
-                                        "name":  "env",
-                                        "options":  [
-
-                                                    ],
-                                        "query":  "SHOW TAG VALUES FROM http_reqs WITH KEY = \"env\"",
-                                        "refresh":  1,
-                                        "regex":  "",
-                                        "type":  "query"
-                                    }
-                                ]
-                   },
-    "time":  {
-                 "from":  "now-1h",
-                 "to":  "now"
-             },
-    "timepicker":  {
-
-                   },
-    "timezone":  "",
-    "title":  "K6 Performance Test Dashboard",
-    "uid":  "k6-dashboard",
-    "version":  13
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_reqs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM http_reqs WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Requests Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Response Time (ms)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 6,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Avg Response",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Response Time Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Response Time (ms)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 7,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Avg",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(value) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        },
+        {
+          "alias": "P90",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT percentile(value, 90) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        },
+        {
+          "alias": "P95",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT percentile(value, 95) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        },
+        {
+          "alias": "P99",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT percentile(value, 99) FROM http_req_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Response Time Percentiles (Mean, P90, P95, P99)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Data (bytes/s)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 8,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Data Sent",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "data_sent",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM data_sent WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        },
+        {
+          "alias": "Data Received",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "data_received",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM data_received WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Data Sent & Received Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Iterations/sec",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 9,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Iterations",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "iterations",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(value) FROM iterations WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Iterations Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "P951FEA4DE68E13C5"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Duration (s)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 10,
+      "interval": "1s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "alias": "Avg Duration",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "iteration_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(value) FROM iteration_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        },
+        {
+          "alias": "Max Duration",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "P951FEA4DE68E13C5"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "interval": "1s",
+          "measurement": "iteration_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(value) FROM iteration_duration WHERE $timeFilter AND (\"name\" = '$testname' OR '$testname' = 'All') AND (\"endpoint\" = '$endpoint' OR '$endpoint' = 'All') AND (\"env\" = '$env' OR '$env' = 'All') GROUP BY time($__interval)",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [],
+          "tags": []
+        }
+      ],
+      "title": "Iteration Duration (Mean & Max)",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 42,
+  "tags": [
+    "k6",
+    "performance"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": "All",
+        "current": {
+          "text": "All",
+          "value": "All"
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"name\"",
+        "description": "Filter by test name",
+        "includeAll": true,
+        "label": "Test Name",
+        "name": "testname",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"name\"",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allValue": "All",
+        "current": {
+          "text": "All",
+          "value": "All"
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"endpoint\"",
+        "description": "Filter by endpoint",
+        "includeAll": true,
+        "label": "Endpoint",
+        "name": "endpoint",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"endpoint\"",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allValue": "All",
+        "current": {
+          "text": "All",
+          "value": "All"
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"env\"",
+        "description": "Filter by environment",
+        "includeAll": true,
+        "label": "Environment",
+        "name": "env",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM http_reqs WITH KEY = \"env\"",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "K6 Performance Test Dashboard",
+  "uid": "k6-dashboard",
+  "version": 8
 }
